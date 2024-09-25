@@ -1,0 +1,24 @@
+{
+  "name": "@leon_test_group/good-cli",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "lanyou <15726681076@163.com>",
+  "homepage": "",
+  "license": "ISC",
+  "bin": {
+    "good-cli": "./bin/goodcli.mjs"
+  },
+  "main": "lib/cli.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib",
+    "bin"
+  ],
+  "scripts": {
+    "test": "node ./__tests__/cli.test.js"
+  },
+  "type": "module"
+}
