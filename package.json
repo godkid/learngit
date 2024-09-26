@@ -1,6 +1,7 @@
 {
   "name": "leon_test_group",
   "private": true,
+  "version": "1.0.0",
   "workspaces": [
     "packages/*"
   ],
