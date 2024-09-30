@@ -1,4 +1,5 @@
 import Command from "@leon_test_group/command";
+import { log } from '@leon_test_group/utils'
 
 class InitCommand extends Command {
   get command(){
@@ -14,7 +15,12 @@ class InitCommand extends Command {
   }
 
   action([name, opts]){
-    console.log('暑促', name, opts);
+    log.verbose('init', name, opts);
+    // new Promise(resolve => {
+    //   resolve()
+    // }).then(() => {
+    //   throw new Error('error from promise')
+    // })
   }
   
   preAction(){
