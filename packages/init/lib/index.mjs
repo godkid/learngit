@@ -14,7 +14,9 @@ class InitCommand extends Command {
   }
   get options(){
     return [
-      ['-f, --force', '是否强制更新', false]
+      ['-f, --force', '是否强制更新', false],
+      ['-t, --type <type>', '项目类型（值： project/page）'],
+      ['-tp, --template <template>', '模板名称']
     ]
   }
 

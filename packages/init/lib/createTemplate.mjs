@@ -62,15 +62,36 @@ function makeTargetPath(){
 }
 
 export default async function createTemplate(name, opts) {
-   const addType =  await getAddType()
+   const { type = null, template = null } = opts;
+    
+   let addType; // 项目类型
+   let addName; // 项目名称
+   let addTemplate;  // 项目模板
+   if(type){
+       addType = type;
+   }else{
+        addType =  await getAddType()
+   }
    log.verbose('addType', addType)
+   
    if(addType === ADD_TYPE_PROJECT){
        // 创建项目
-     const addName = await getAddName();
+       if(name){
+          addName = name;
+       }else{
+        addName = await getAddName();
+       }
      log.verbose('addName', addName)
-     const addTemplate = await getAddTemplate();
+     if(template){
+        addTemplate = template;
+     }else{
+        addTemplate = await getAddTemplate();  
+     }
      log.verbose('addTemplate', addTemplate)
      const selectedTemplate = ADD_TEMPLATE.find(item => item.value === addTemplate)
+     if (!selectedTemplate) {
+        throw new Error(`项目模板 ${template} 不存在！`);
+      }
      log.verbose('selectTemplate', selectedTemplate)
      // 获取最新的版本
     const latestVersion = await getLatestVersion(selectedTemplate.npmName);
