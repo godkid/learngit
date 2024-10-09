@@ -1,4 +1,6 @@
-import { makeList, makeInput, log } from '@leon_test_group/utils'
+import { makeList, makeInput, log, getLatestVersion } from '@leon_test_group/utils'
+import path from 'node:path';
+import { homedir } from 'node:os';
 
 
 const ADD_TYPE_PROJECT = 'project';
@@ -29,6 +31,9 @@ const ADD_TEMPLATE = [
     }
 ]
 
+const TEMP_HOME = '.good-cli';
+
+
 async function getAddType(){
     return await makeList({
         message: '请选择项目类型',
@@ -52,6 +57,10 @@ async function getAddTemplate(){
     })
 }
 
+function makeTargetPath(){
+    return path.resolve(`${homedir()}/${TEMP_HOME}`, 'addTemplate')
+}
+
 export default async function createTemplate(name, opts) {
    const addType =  await getAddType()
    log.verbose('addType', addType)
@@ -64,11 +73,15 @@ export default async function createTemplate(name, opts) {
      const selectedTemplate = ADD_TEMPLATE.find(item => item.value === addTemplate)
      log.verbose('selectTemplate', selectedTemplate)
      // 获取最新的版本
+    const latestVersion = await getLatestVersion(selectedTemplate.npmName);
+    log.verbose('latestVersion', latestVersion);
+    selectedTemplate.version = latestVersion;
+     const targetPath = makeTargetPath();
      return {
         type: addType,
         name: addName,
         template: selectedTemplate,
-
+        targetPath
      }
    }else if(addType === ADD_TYPE_PAGE){
        // 创建页面

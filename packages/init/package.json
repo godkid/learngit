@@ -18,6 +18,10 @@
   },
   "type": "module",
   "devDependencies": {
-    "@leon_test_group/command": "^1.0.0"
+    "@leon_test_group/command": "^1.0.0",
+    "execa": "^9.4.0",
+    "fse": "^4.0.1",
+    "ora": "^8.1.0",
+    "path-exists": "^5.0.0"
   }
 }

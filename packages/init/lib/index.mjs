@@ -1,6 +1,9 @@
 import Command from "@leon_test_group/command";
 import { log } from '@leon_test_group/utils'
 import creteTemplate from './createTemplate.mjs'
+import downloadTemplate from './downloadTemplate.mjs'
+import installTemplate from './installTemplate.mjs';
+
 
 class InitCommand extends Command {
   get command(){
@@ -15,7 +18,7 @@ class InitCommand extends Command {
     ]
   }
 
-  action([name, opts]){
+ async action([name, opts]){
     log.verbose('init', name, opts);
     // new Promise(resolve => {
     //   resolve()
@@ -23,9 +26,13 @@ class InitCommand extends Command {
     //   throw new Error('error from promise')
     // })
     // 1. 选择项目模版，生成项目信息
-    creteTemplate(name, opts)
+    const selectedTemplate = await  creteTemplate(name, opts)
+    log.verbose('selectedTemplate -----', selectedTemplate);
     // 2. 下载项目模至缓存目录
+    await downloadTemplate(selectedTemplate)
     // 3. 安装项目模板到项目目录
+    await installTemplate(selectedTemplate, opts);
+    
   }
   
   preAction(){

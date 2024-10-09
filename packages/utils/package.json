@@ -18,6 +18,8 @@
   },
   "type": "module",
   "devDependencies": {
-    "inquirer": "^11.1.0"
+    "axios": "^1.7.7",
+    "inquirer": "^11.1.0",
+    "url-join": "^5.0.0"
   }
 }
