@@ -1,5 +1,6 @@
 import Command from "@leon_test_group/command";
 import { log } from '@leon_test_group/utils'
+import creteTemplate from './createTemplate.mjs'
 
 class InitCommand extends Command {
   get command(){
@@ -21,6 +22,10 @@ class InitCommand extends Command {
     // }).then(() => {
     //   throw new Error('error from promise')
     // })
+    // 1. 选择项目模版，生成项目信息
+    creteTemplate(name, opts)
+    // 2. 下载项目模至缓存目录
+    // 3. 安装项目模板到项目目录
   }
   
   preAction(){

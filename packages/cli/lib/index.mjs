@@ -4,8 +4,6 @@ import createInitCommand from '@leon_test_group/init'
 import createCli from './createCli.mjs'
 // import './exception.mjs'
 
-// import chalk from 'chalk'
-
 
 // src/index.js
 // 这个还没解决
